@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/CtrlEnterTray">
+        <file>Resources/on.png</file>
+        <file>Resources/off.png</file>
+    </qresource>
+</RCC>
