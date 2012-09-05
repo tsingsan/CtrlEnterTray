@@ -23,8 +23,11 @@ private slots:
 	void onShowMessage(QString title, QString message);
 	void onSetIcon(const char* name);
 
+	void onClearCount();
+
 	void onStatusChanged(bool);
 	void onValueChanged(int);
+	void onTotalValueChanged(int);
 
 private:
 	void createActions();
@@ -42,5 +45,7 @@ private:
 
 	Ui::CtrlEnterTrayClass ui;
 };
+
+extern QString gWinFilterName;
 
 #endif // CTRLENTERTRAY_H

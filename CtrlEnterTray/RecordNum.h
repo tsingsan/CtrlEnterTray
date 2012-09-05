@@ -13,7 +13,9 @@ public:
 	bool status(){return _status;}
 
 public slots:
+	void setValue(int);
 	void increment();
+	void decrement();
 	void clear();
 
 	void pause();

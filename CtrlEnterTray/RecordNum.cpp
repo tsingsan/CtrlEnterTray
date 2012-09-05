@@ -9,6 +9,15 @@ RecordNum::~RecordNum(void)
 {
 }
 
+void RecordNum::setValue(int num)
+{
+	if (_num != num)
+	{
+		_num = num;
+		emit valueChanged(_num);
+	}
+}
+
 void RecordNum::increment()
 {	
 	if (!_status)
@@ -17,6 +26,17 @@ void RecordNum::increment()
 	}
 
 	_num ++;
+	emit valueChanged(_num);
+}
+
+void RecordNum::decrement()
+{	
+	if (!_status || !_num)
+	{
+		return;
+	}
+
+	_num --;
 	emit valueChanged(_num);
 }
 

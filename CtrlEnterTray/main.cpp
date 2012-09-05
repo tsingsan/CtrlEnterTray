@@ -1,9 +1,15 @@
 #include "ctrlentertray.h"
+#include "PredefinedTextManager.h"
 #include <QtGui>
+
+const int shownum = 3;
 
 int main(int argc, char *argv[])
 {
 	QTextCodec::setCodecForTr(QTextCodec::codecForName("System"));
+	QTextCodec::setCodecForCStrings(QTextCodec::codecForName("System"));
+
+	gWinFilterName = argc > 1 ? argv[1] : "";
 
 	QApplication a(argc, argv);
 
@@ -14,6 +20,8 @@ int main(int argc, char *argv[])
 		return 1;
 	}
 
-	CtrlEnterTray w;
+	PredefinedTextManager::Instance().initTextWin();
+
+	CtrlEnterTray w(NULL, Qt::WindowStaysOnTopHint);
 	return a.exec();
 }
