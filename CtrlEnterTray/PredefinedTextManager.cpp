@@ -249,6 +249,24 @@ void PredefinedTextManager::slideLeft()
 	}
 	QParallelAnimationGroup* animgroup = new QParallelAnimationGroup;
 
+	if (winlistmap.size() > 2)
+	{
+		WinMap::iterator disappearit = winlistmapit;
+		if (disappearit-- == winlistmap.begin())
+		{
+			disappearit = --winlistmap.end();
+		}
+		WinList& disappearlist = disappearit->second;
+		for(int i = 0; i < MIN(shownum, disappearlist.size()) ; i++)
+		{
+			disappearlist[i]->setWindowOpacity(0);
+		}
+		{
+			PredefinedTextGroupLabel* disappearlabel = disappearit->first;
+			disappearlabel->setWindowOpacity(0);
+		}		
+	}
+
 	WinList& winlist = winlistmapit->second;
 	for(int i = 0; i < MIN(shownum, winlist.size()) ; i++)
 	{
@@ -323,6 +341,24 @@ void PredefinedTextManager::slideRight()
 		return;
 	}
 	QParallelAnimationGroup* animgroup = new QParallelAnimationGroup;
+
+	if (winlistmap.size() > 2)
+	{
+		WinMap::iterator disappearit = winlistmapit;
+		if (++disappearit == winlistmap.end())
+		{
+			disappearit = winlistmap.begin();
+		}		
+		WinList& disappearlist = disappearit->second;
+		for(int i = 0; i < MIN(shownum, disappearlist.size()) ; i++)
+		{
+			disappearlist[i]->setWindowOpacity(0);
+		}
+		{
+			PredefinedTextGroupLabel* disappearlabel = disappearit->first;
+			disappearlabel->setWindowOpacity(0);
+		}
+	}
 
 	WinList& winlist = winlistmapit->second;
 	for(int i = 0; i < MIN(shownum, winlist.size()) ; i++)

@@ -52,7 +52,8 @@ LRESULT CALLBACK keyProc(int nCode,WPARAM wParam,LPARAM lParam )
 					else
 					{
 						PredefinedTextManager::Instance().slideDown();
-					}					
+					}
+					return S_FALSE;
 				}
 				else if(pkbhs->vkCode == VK_UP)
 				{
@@ -63,7 +64,8 @@ LRESULT CALLBACK keyProc(int nCode,WPARAM wParam,LPARAM lParam )
 					else
 					{
 						PredefinedTextManager::Instance().slideUp();
-					}					
+					}
+					return S_FALSE;
 				}
 				else if(pkbhs->vkCode == VK_LEFT)
 				{
@@ -75,6 +77,7 @@ LRESULT CALLBACK keyProc(int nCode,WPARAM wParam,LPARAM lParam )
 					{
 						PredefinedTextManager::Instance().slideLeft();
 					}
+					return S_FALSE;
 				}
 				else if(pkbhs->vkCode == VK_RIGHT)
 				{
@@ -86,6 +89,7 @@ LRESULT CALLBACK keyProc(int nCode,WPARAM wParam,LPARAM lParam )
 					{
 						PredefinedTextManager::Instance().slideRight();
 					}
+					return S_FALSE;
 				}
 				else if (pkbhs->vkCode == VK_RETURN)
 				{
@@ -243,11 +247,11 @@ void CtrlEnterTray::onValueChanged(int num)
 	trayIcon->setToolTip(tr("回复数:%1").arg(num) + (targetnum ? tr("/%1").arg(targetnum) : ""));
 	if (targetnum && num >= targetnum)
 	{
-		onShowMessage(tr("任务完成!!!"), tr("已经回复%1帖子").arg(num));
+		onShowMessage(tr("任务完成!!!"), tr("已经回复%1帖子 (总计%2)").arg(num).arg(gTotalNum->value()));
 	}
 	else if(num > oldnum)
 	{
-		onShowMessage(tr("回复+1"), tr("已经回复%1帖子").arg(num));
+		onShowMessage(tr("回复+1"), tr("已经回复%1帖子 (总计%2)").arg(num).arg(gTotalNum->value()));
 	}
 
 	gTotalNum->setValue(gTotalNum->value() + num - oldnum);
